@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CCRC IT CLUB</title>
+  </head>
+ <style>
+*{
+margin: 0;
+padding: 0;
+outline: none;
+font-family: Arial;
+}
+li{
+font-size: 30px;
+}
+textarea{
+font-size: 25px;
+}
+div{
+width: 50%;
+border: 2px solid black;
+}
+</style>
+  <body>
+    <center><h1>POST SUGGESTIONS</h1></center>
+    <ul>
+      <% statuses.forEach(function(status, index) { %>
+        <center><li style="border: 2px solid black;color: black;font-family:Arial;list-style:none;background-color:lightblue;height: 40vh; width: 50%;border-radius: 20px;text-align:center;">
+          <%= status %>
+          <form method="POST" action="/<%= index %>?_method=DELETE">
+            <input style="width: 100px;height:30px;" type="submit" value="Delete">
+          </form>
+          <button style="width: 100px;height: 30px;"onclick="document.getElementById('edit-<%= index %>').style.display = 'block'">Edit</button>
+          <form id="edit-<%= index %>" method="POST" action="/<%= index %>?_method=PUT" style="display:none">
+            <textarea name="status" rows="5" cols="30"><%= status %></textarea>
+            <input type="submit" value="Update">
+          </form>
+        </li></center><br><br>
+      <% }); %>
+    </ul>
+    <h2 style="color: red;font-family:Arial;background-color: green;width: 100%;text-align:center;">Post Status</h2>
+   <br><br><center> <form method="POST" action="/">
+      <div style="background-color: red;border-radius: 10px;">
+	<br><br><textarea style="text-align:center;outline:none;border-radius: 10px;border: 1px solid black;" name="status" rows="5" cols="30" required></textarea><br>
+      <input style="width: 100px;height: 30px;" type="submit" value="Post">
+     <br><br></div>
+    </form><center>
+  </body>
+</html>
